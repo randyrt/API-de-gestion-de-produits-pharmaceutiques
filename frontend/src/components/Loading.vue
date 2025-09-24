@@ -1,7 +1,7 @@
 <template>
-  <div class="loading-container">
+  <div class="h-screen loading-container">
     <div class="spinner"></div>
-    <p v-if="message">{{ message }}</p>
+    <p class="text-sm text-black" v-if="message">{{ message }}</p>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default defineComponent({
   width: 40px;
   height: 40px;
   border: 4px solid rgba(0, 0, 0, 0.2);
-  border-top-color: #4f46e5; /* Indigo 600 Tailwind color */
+  border-top-color: #0ce6ee; 
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 10px;
