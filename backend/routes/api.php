@@ -9,3 +9,7 @@ Route::prefix('user')->group(function () {
 Route::prefix('products')->group(function () {
     require __DIR__.'/api/product/product.php';
 });
+
+Route::prefix('ai')->group(function () {
+    require __DIR__.'/api/ai/ai.php';
+});
