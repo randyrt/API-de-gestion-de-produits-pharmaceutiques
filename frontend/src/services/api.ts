@@ -7,14 +7,13 @@ export interface ResponseService<T = any> {
   message: string | null;
 }
 
-
 const api: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   },
-  withCredentials: false, 
+  withCredentials: true, 
 });
 
 
