@@ -18,6 +18,7 @@ class UserController extends Controller
         $user = User::all();
 
         return response()->json(ResponseService::success($user, 'Liste des utilisateurs récupérée avec succès'));
+        
     }
 }
 
