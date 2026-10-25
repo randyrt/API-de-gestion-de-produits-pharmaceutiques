@@ -19,7 +19,7 @@ class AIController extends Controller
         ]);
 
         try {
-            $response = (new PharmaAssistant)->prompt(
+            $response = (new PharmaAssistant($request->user()))->prompt(
                 $validated['message'],
                 provider: Lab::Gemini,
             );
@@ -30,6 +30,10 @@ class AIController extends Controller
         } catch (Throwable $e) {
             Log::error('Erreur PharmaAssistant', [
                 'exception' => $e::class,
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
             ]);
 
             return response()->json([
