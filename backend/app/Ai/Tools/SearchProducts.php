@@ -43,13 +43,30 @@ class SearchProducts implements Tool
             ->limit(10)
             ->get();
 
+        // $products = $this->user->products()
+        //     ->where(function ($query) use ($term) {
+        //         $query->where('name', 'like', "%{$term}%")
+        //             ->orWhere('description', 'like', "%{$term}%")
+        //             ->orWhere('stock', '<=', 10);
+        //     })
+        //     ->select([
+        //         'id',
+        //         'name',
+        //         'description',
+        //         'price',
+        //         'stock',
+        //         'is_active',
+        //     ])
+        //     ->limit(10)
+        //     ->get();
+
         return json_encode(
             $products,
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
         ) ?: '[]';
     }
 
-    public function schema(JsonSchema $schema): array 
+    public function schema(JsonSchema $schema): array
     {
         return [
             'query' => $schema
