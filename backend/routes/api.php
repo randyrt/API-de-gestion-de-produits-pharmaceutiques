@@ -13,3 +13,8 @@ Route::prefix('products')->group(function () {
 Route::prefix('ai')->group(function () {
     require __DIR__.'/api/ai/ai.php';
 });
+
+
+Route::prefix('stocks')->group(function () {
+    require __DIR__.'/api/stock/stock.php';
+});
