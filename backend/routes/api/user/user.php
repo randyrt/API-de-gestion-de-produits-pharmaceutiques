@@ -5,16 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 
 
-Route::post('/register', [AuthController::class, 'register'])
-    ->middleware('throttle:5,1');
+Route::middleware('throttle:5,1')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+});
 
-Route::post('/login', [AuthController::class, 'login'])
-    ->middleware('throttle:5,1');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::get('/', function (Request $request) {
+    Route::get('/user', function (Request $request) {
         return $request->user();
     });
 });

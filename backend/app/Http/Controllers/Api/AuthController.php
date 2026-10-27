@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use App\Jobs\SendWelcomeEmail;
 
 class AuthController extends Controller
 {
@@ -27,12 +28,15 @@ class AuthController extends Controller
 
         $token = $user->createToken('api-token')->plainTextToken;
 
+        SendWelcomeEmail::dispatch($user);
+
         return response()->json([
             'message' => 'Compte créé avec succès.',
             'user' => $user,
             'token' => $token,
         ], 201);
     }
+
 
     public function login(Request $request): JsonResponse
     {
