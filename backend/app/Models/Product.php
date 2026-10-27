@@ -18,6 +18,7 @@ class Product extends Model
         'price',
         'stock',
         'is_active',
+        'currency',
     ];
 
     protected function casts(): array

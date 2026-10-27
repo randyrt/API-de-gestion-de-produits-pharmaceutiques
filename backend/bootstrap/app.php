@@ -1,4 +1,3 @@
-```php
 <?php
 
 use Illuminate\Foundation\Application;
@@ -16,7 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(append: [
             \App\Http\Middleware\AddAppNameHeader::class,
         ]);
+
+        $middleware->redirectGuestsTo(fn () => null);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
     })->create();
