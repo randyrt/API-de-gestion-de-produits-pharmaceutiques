@@ -14,7 +14,6 @@ Route::prefix('ai')->group(function () {
     require __DIR__.'/api/ai/ai.php';
 });
 
-
 Route::prefix('stocks')->group(function () {
     require __DIR__.'/api/stock/stock.php';
 });
@@ -22,4 +21,4 @@ Route::prefix('stocks')->group(function () {
 Route::prefix('stripe')->group(function () {
     require __DIR__.'/api/stripe/stripe.php';
     require __DIR__.'/api/stripe/stripewebhook.php';
-});
+});  
