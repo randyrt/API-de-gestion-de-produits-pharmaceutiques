@@ -25,7 +25,7 @@ class StripeCheckoutController extends Controller
         if (!is_string($secretKey) || !str_starts_with($secretKey, 'sk_')) {
             return response()->json([
                 'message' => 'La configuration Stripe est invalide.',
-            ], 500);
+            ], 500, [], JSON_PRETTY_PRINT);
         }
 
         $stripe = new StripeClient($secretKey);

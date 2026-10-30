@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -38,7 +37,7 @@ class ProductController extends Controller
         return response()->json([
             'message' => 'Produit créé avec succès.',
             'data' => $product,
-        ], 201);
+        ], 201, [], JSON_PRETTY_PRINT);
     }
 
     public function show(Request $request, int $id): JsonResponse
@@ -76,7 +75,7 @@ class ProductController extends Controller
         return response()->json([
             'message' => 'Produit modifié avec succès.',
             'data' => $product->refresh(),
-        ]);
+        ], 201, [], JSON_PRETTY_PRINT);
     }
 
     public function destroy(Request $request, int $id): JsonResponse
@@ -89,6 +88,6 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'Produit supprimé avec succès.',
-        ]);
+        ], 201, [], JSON_PRETTY_PRINT);
     }
 }

@@ -21,7 +21,7 @@ class StripeWebhookController extends Controller
         if (!$signature || !$webhookSecret) {
             return response()->json([
                 'message' => 'Signature ou configuration webhook manquante.',
-            ], 400);
+            ], 400, [], JSON_PRETTY_PRINT);
         }
 
         try {
@@ -33,11 +33,11 @@ class StripeWebhookController extends Controller
         } catch (UnexpectedValueException $e) {
             return response()->json([
                 'message' => 'Payload invalide.',
-            ], 400);
+            ], 400, [], JSON_PRETTY_PRINT);
         } catch (SignatureVerificationException $e) {
             return response()->json([
                 'message' => 'Signature Stripe invalide.',
-            ], 400);
+            ], 400, [], JSON_PRETTY_PRINT);
         }
 
         if ($event->type === 'checkout.session.completed') {
@@ -59,7 +59,7 @@ class StripeWebhookController extends Controller
 
                 return response()->json([
                     'message' => 'Commande introuvable dans les métadonnées.',
-                ], 400);
+                ], 400, [], JSON_PRETTY_PRINT);
             }
 
             $order = Order::where('id', $orderId)
@@ -74,7 +74,7 @@ class StripeWebhookController extends Controller
 
                 return response()->json([
                     'message' => 'Commande introuvable.',
-                ], 404);
+                ], 404, [], JSON_PRETTY_PRINT);
             }
 
             // Mise à jour idempotente : un webhook répété

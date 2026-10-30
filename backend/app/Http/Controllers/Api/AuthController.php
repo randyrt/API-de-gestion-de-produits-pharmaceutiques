@@ -34,7 +34,7 @@ class AuthController extends Controller
             'message' => 'Compte créé avec succès.',
             'user' => $user,
             'token' => $token,
-        ], 201);
+        ], 201, [], JSON_PRETTY_PRINT);
     }
 
 
